@@ -1,45 +1,37 @@
 import {
-  Box,
-  FormControlLabel,
-  FormGroup,
-  Paper,
+  Box, Paper,
   Skeleton,
   Switch,
-  Typography,
+  Typography
 } from "@mui/material";
 import { PropsWithChildren, useState } from "react";
 import useSWR from "swr";
-import { getUsers, userApiEndpoint } from "../../api/user";
-import SuspenseWrapper from "../SuspenseWrapper";
-import ErrorBoundaryWrapper from "../ErrorBoundaryWrapper";
+import { getUsers, userApiEndpoint } from "../api/user";
+import SuspenseWrapper from "./SuspenseWrapper";
+import ErrorBoundaryWrapper from "./ErrorBoundaryWrapper";
 interface Props {}
 
-const UserSection: React.FC<PropsWithChildren<Props>> = ({}) => {
+const Users: React.FC<PropsWithChildren<Props>> = ({}) => {
   const [forceFail, setForceFail] = useState(false);
   const [cacheKey, setCacheKey] = useState(Date.now());
 
   return (
     <>
       <Box>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                color="error"
-                checked={forceFail}
-                onChange={(e) => setForceFail(e.target.checked)}
-              />
-            }
-            label={
-              <Typography
-                color={forceFail ? "error" : "#00000050"}
-                fontWeight="bold"
-              >
-                Force fail
-              </Typography>
-            }
+        <Box display="flex" alignItems="center">
+          <Switch
+            color="error"
+            checked={forceFail}
+            onChange={(e) => setForceFail(e.target.checked)}
           />
-        </FormGroup>
+          <Typography
+            color={forceFail ? "error" : "#00000050"}
+            fontWeight="bold"
+          >
+            Force fail
+          </Typography>
+        </Box>
+
         <Box mt={2} />
         <ErrorBoundaryWrapper onReset={() => setCacheKey(Date.now())}>
           <SuspenseWrapper FallbackComponent={<SuspenseFallbackComponent />}>
@@ -83,4 +75,4 @@ const SuspenseFallbackComponent = () => (
   </Box>
 );
 
-export default UserSection;
+export default Users;

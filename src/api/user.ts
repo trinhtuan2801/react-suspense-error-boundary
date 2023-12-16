@@ -15,7 +15,9 @@ const userApi = axios.create({
 export const getUsers = async (forceFail = false) => {
   await delay(1500);
   if (forceFail)
-    return Promise.reject({ message: "Can't get data due to being forced to fail" });
+    return Promise.reject({
+      message: "Can't get data due to being forced to fail",
+    });
   const response = await userApi.get("");
   return response.data as IUser[];
 };

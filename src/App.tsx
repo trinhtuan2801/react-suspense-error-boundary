@@ -1,14 +1,11 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
+import { Box } from "@mui/material";
+import Users from "./components/Users";
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" index element={<Home />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </>
+    <Box p={2}>
+      <Users />
+    </Box>
   );
 }
 

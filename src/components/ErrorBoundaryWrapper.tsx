@@ -10,11 +10,9 @@ const ErrorBoundaryWrapper: React.FC<PropsWithChildren<Props>> = ({
   onReset,
 }) => {
   return (
-    <>
-      <ErrorBoundary FallbackComponent={FallbackComponent} onReset={onReset}>
-        {children}
-      </ErrorBoundary>
-    </>
+    <ErrorBoundary FallbackComponent={FallbackComponent} onReset={onReset}>
+      {children}
+    </ErrorBoundary>
   );
 };
 

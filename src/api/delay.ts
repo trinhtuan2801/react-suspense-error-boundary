@@ -1,7 +1,6 @@
-export const delay = (time = 800) => {
-  return new Promise((resolve) => {
+export const delay = (time = 800) =>
+  new Promise((resolve) => {
     setTimeout(() => {
       resolve("hehe");
     }, time);
   });
-};
